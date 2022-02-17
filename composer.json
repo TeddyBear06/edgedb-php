@@ -1,0 +1,16 @@
+{
+    "name": "teddybear06/edgedb-php",
+    "description": "An unofficial EdgeDB PHP client.",
+    "keywords": [
+        "php",
+        "edgedb"
+    ],
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TeddyBear06\\EdgeDbPhp\\": "src/"
+        }
+    }
+}
