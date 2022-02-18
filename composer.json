@@ -6,7 +6,11 @@
         "edgedb"
     ],
     "require": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9"
     },
     "autoload": {
         "psr-4": {
