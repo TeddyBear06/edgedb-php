@@ -3,27 +3,30 @@
 namespace TeddyBear06\EdgeDbPhp;
 
 /**
- * An EdgeDB query helper.
+ * An EdgeQL query helper.
  */
-class EdgeDbQuery {
+class EdgeQlQuery
+{
 
     /**
-     * EdgeDB query
+     * EdgeQL query
+     * 
      * @var string
      */
     private string $query;
 
     /**
-     * EdgeDB query's variables
+     * EdgeQL query's variables
+     * 
      * @var \stdClass
      */
     private \stdClass $variables;
 
     /**
-     * Creates an EdgeDB PHP query instance
+     * Creates an EdgeQL query instance
      * 
      * @var string $query The query (see https://www.edgedb.com/docs/edgeql/index)
-     * @var array $variables The variables required by your query
+     * @var array $variables The query's variables
      */
     public function __construct(string $query, array $variables = [])
     {

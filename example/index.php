@@ -1,23 +1,7 @@
-# Unofficial EdgeDB HTTP PHP client
+<?php
 
-## Requirements
-
-- PHP >= 8.0 (with fileinfo and mbstring)
-- An EdgeDB server instance (tested with 1.0+9ecadfc) 
-
-## Quickstart
-
-Add this package to your project:
-
-```bash
-$ composer require teddybear06/edgedb-php
-```
-
-This is a complete usage example (or look at https://github.com/TeddyBear06/edgedb-php/tree/main/example/index.php):
-
-```php
 // Require Composer's autoloader 
-require '/vendor/autoload.php';
+require __DIR__ .'/../vendor/autoload.php';
 
 // Use required classes
 use TeddyBear06\EdgeDbPhp\EdgeDbHttpClient;
@@ -60,8 +44,3 @@ if (is_null($response->getError())) {
     echo $response->getError()['message'];
 
 }
-```
-
-## Documentation
-
-For a complete API documentation, please go here : [https://teddybear06.github.io/edgedb-php/](https://teddybear06.github.io/edgedb-php/)

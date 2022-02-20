@@ -3,3 +3,5 @@ phpunit
 .phpunit*
 phpunit.xml
 vendor/
+phpDocumentor.phar
+.phpdoc/

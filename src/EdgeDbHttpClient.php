@@ -2,16 +2,18 @@
 
 namespace TeddyBear06\EdgeDbPhp;
 
-use TeddyBear06\EdgeDbPhp\EdgeDbQuery;
+use TeddyBear06\EdgeDbPhp\EdgeDbHttpResponse;
+use TeddyBear06\EdgeDbPhp\EdgeQlQuery;
 use GuzzleHttp\Client;
 
 /**
- * An unofficial naive EdgeDB PHP client using EdgeDB HTTP protocol.
+ * An unofficial EdgeDB PHP client using EdgeDB HTTP protocol.
  * 
  * See https://www.edgedb.com/docs/clients/90_edgeql/index for more informations about
  * how to activate it on your EdgeDB instance.
  */
-class EdgeDbClient {
+class EdgeDbHttpClient
+{
 
     /**
      * EdgeDB hostname (or IP).
@@ -54,7 +56,7 @@ class EdgeDbClient {
      * @var string $hostname The EdgeDB server hostname (or IP).
      * @var int $port The EdgeDB server port.
      * @var string $database The EdgeDB database name.
-     * @var bool $debug Indicates whether or not the client should display debug infos.
+     * @var bool $debug Indicates whether or not the client should display debug infos (see https://docs.guzzlephp.org/en/stable/request-options.html#debug).
      */
     public function __construct(string $hostname = '127.0.0.1', int $port = 10700, string $database = 'edgedb', bool $debug = false)
     {
@@ -68,12 +70,13 @@ class EdgeDbClient {
     }
 
     /**
-     * Send an HTTP request against an EdgeDB server instance.
+     * Send an HTTP query against an EdgeDB server instance.
      * 
-     * @var EdgeDbQuery $query The EdgeDB query.
-     * @return array
+     * @var EdgeQlQuery $query The EdgeQL query.
+     * 
+     * @return EdgeDbHttpResponse
      */
-    public function send(EdgeDbQuery $query): array
+    public function query(EdgeQlQuery $query): EdgeDbHttpResponse
     {
         $options = [
             'json' => $query->getQuery(),
@@ -81,18 +84,8 @@ class EdgeDbClient {
         ];
 
         $response = $this->client->request('POST', '', $options);
-
-        $body = $response->getBody();
-
-        $json = json_decode($body->__toString(), true);
-
-        if ($this->debug) {
-            $json['debug'] = [
-                'jsonQuery' => $query->getQuery()
-            ];
-        }
-
-        return $json;
+        
+        return new EdgeDbHttpResponse($response->getBody());
     }
 
 }
