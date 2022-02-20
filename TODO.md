@@ -1,0 +1,3 @@
+- [x] Create a TODO list
+- [ ] Support client authentification
+- [ ] Support more client configuration options

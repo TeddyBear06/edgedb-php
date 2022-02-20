@@ -26,7 +26,7 @@ use TeddyBear06\EdgeDbPhp\EdgeQlQuery;
 // Establish a connection with the EdgeDB server instance
 $connection = new EdgeDbHttpClient('127.0.0.1', '10700', 'edgedb');
 
-// Create a EdgeQL query
+// Create an EdgeQL query
 $query = new EdgeQlQuery(
     'select Author {firstname, lastname} filter .lastname = <str>$lastname;', 
     ['lastname' => 'Doe']
