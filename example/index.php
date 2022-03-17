@@ -27,7 +27,7 @@ if (is_null($response->getError())) {
 
         // Loop over results
         foreach ($response->getData() as $data) {
-            echo $data['prenom'];
+            echo $data['firstname'];
         }
 
     } else {
