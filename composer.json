@@ -5,6 +5,9 @@
         "php",
         "edgedb"
     ],
+    "license": [
+        "WTFPL"
+    ],
     "require": {
         "php": ">=8.0",
         "guzzlehttp/guzzle": "^7.0"
