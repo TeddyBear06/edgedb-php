@@ -3,7 +3,7 @@
 ## Requirements
 
 - PHP >= 8.0 (with fileinfo and mbstring)
-- An EdgeDB server instance (tested with 1.0+9ecadfc) 
+- An EdgeDB server instance (tested with 2.0.5+f78cf34) 
 
 ## Quickstart
 
