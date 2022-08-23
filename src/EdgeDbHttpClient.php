@@ -3,6 +3,7 @@
 namespace TeddyBear06\EdgeDbPhp;
 
 use TeddyBear06\EdgeDbPhp\EdgeDbHttpResponse;
+use TeddyBear06\EdgeDbPhp\EdgeDbException;
 use TeddyBear06\EdgeDbPhp\EdgeQlQuery;
 use GuzzleHttp\Client;
 
@@ -75,6 +76,8 @@ class EdgeDbHttpClient
      * @var EdgeQlQuery $query The EdgeQL query.
      * 
      * @return EdgeDbHttpResponse
+     * 
+     * @throws EdgeDbException If an error happens while sending the request.
      */
     public function query(EdgeQlQuery $query): EdgeDbHttpResponse
     {
@@ -83,9 +86,12 @@ class EdgeDbHttpClient
             'debug' => $this->debug
         ];
 
-        $response = $this->client->request('POST', '', $options);
-        
-        return new EdgeDbHttpResponse($response->getBody());
+        try {
+            $response = $this->client->request('POST', '', $options);
+            return new EdgeDbHttpResponse($response->getBody());
+        } catch (\Throwable $t) {
+            throw new EdgeDbException('EdgeDB client request failed', $t->getCode(), $t);
+        }
     }
 
 }
